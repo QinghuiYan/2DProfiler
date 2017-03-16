@@ -11,8 +11,6 @@ def CreateUSB(test):
                     ("OUT5", c_uint),
                     ("OUT6", c_uint),
                     ("OUT7", c_uint)]
-##    dllpath='f:\\Desktop\\profiler\\i386\\USB1020_32.dll'
-##    test = windll.LoadLibrary(dllpath)
     DevHdl=test.USB1020_CreateDevice(0)
     ResultSetLP=test.USB1020_SetLP(DevHdl,1,0)
     PAPA=pointer(_USB1020_PARA_DO(1,1,1,1,1,1,1))
@@ -47,12 +45,6 @@ def MoveXY(test,DevHdl,AxisNum,PulNum):
     test.USB1020_InitLVDV(DevHdl,pDL,pLC)
     test.USB1020_StartLVDV(DevHdl,AxisNum)
     sleep(10)#################################
-
-dllpath='f:\\Desktop\\profiler\\i386\\USB1020_32.dll'
-test = windll.LoadLibrary(dllpath)
-
-##DevHdl=CreateUSB(test)
-##MoveXY(test,DevHdl,0,c_int(20))
 
 ############################################################
 ############################################################
@@ -100,11 +92,10 @@ ResultSetLP=test.USB1020_SetLP(DevHdl,1,0)
 PAPA=pointer(_USB1020_PARA_DO(1,1,1,1,1,1,1))
 test.USB1020_SetDeviceDO(DevHdl, AxisNum, PAPA)
 
-
 pDL=pointer(_USB1020_PAPA_DataList(MultiRatio,1000,4000,500,125,6000,6000))
 pLC=pointer(_USB1020_PAPA_LCData(AxisNum,0,0,1,0,0,0,MoveDir,int(PulNum)))
-##test.USB1020_InitLVDV(DevHdl,pDL,pLC)
-##test.USB1020_StartLVDV(DevHdl,AxisNum)
+test.USB1020_InitLVDV(DevHdl,pDL,pLC)
+test.USB1020_StartLVDV(DevHdl,AxisNum)
 ##sleep(1)
 ##
 ###test.USB1020_DecStop
