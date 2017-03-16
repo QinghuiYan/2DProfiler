@@ -24,8 +24,7 @@ inst.query('SENS:BWID '+IFBW+surfix)
 inst.query('INIT:CONT OFF'+surfix)
 inst.query('INIT:IMM;*wai'+surfix)
 a = inst.query('CALC:DATA? SDATA'+surfix)
-xi=1
-yi=1
-f = open('./X'+str(xi)+'Y'+str(yi)+'.txt','w')
+
+f = open('./test'.txt','w')
 f.write(a)
 f.close()
